@@ -4,13 +4,18 @@
 :root {
     --primary: #2563eb;
     --primary-dark: #1e40af;
+    --primary-light: #eff6ff;
+    --accent: #7c3aed;
     --text: #1f2937;
     --text-light: #6b7280;
     --bg: #ffffff;
-    --bg-alt: #f3f4f6;
+    --bg-alt: #f8fafc;
     --border: #e5e7eb;
-    --radius: 10px;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --radius: 12px;
+    --radius-lg: 20px;
+    --shadow: 0 4px 24px rgba(37, 99, 235, 0.10);
+    --shadow-lg: 0 12px 48px rgba(37, 99, 235, 0.18);
+    --transition: 0.25s cubic-bezier(.4,0,.2,1);
 }
 
 * {
@@ -24,7 +29,7 @@ html {
 }
 
 body {
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: 'Inter', "Segoe UI", Arial, sans-serif;
     line-height: 1.7;
     color: var(--text);
     background-color: var(--bg);
@@ -145,23 +150,30 @@ a {
 
 /* Tombol */
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     padding: 12px 24px;
     border-radius: var(--radius);
     font-weight: 600;
     border: 2px solid transparent;
     cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 1rem;
+    transition: all var(--transition);
+    font-size: 0.97rem;
+    font-family: inherit;
+    text-decoration: none;
 }
 
 .btn-primary {
     background: var(--primary);
     color: #fff;
+    box-shadow: 0 4px 14px rgba(37,99,235,0.25);
 }
 
 .btn-primary:hover {
     background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37,99,235,0.35);
 }
 
 .btn-outline {
@@ -173,13 +185,58 @@ a {
 .btn-outline:hover {
     background: var(--primary);
     color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn-ghost {
+    border-color: var(--border);
+    color: var(--text);
+    background: transparent;
+}
+
+.btn-ghost:hover {
+    background: var(--bg-alt);
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+}
+
+.btn-full {
+    width: 100%;
+    justify-content: center;
+}
+
+.photo-ring {
+    position: relative;
+    display: inline-block;
+}
+
+.photo-ring::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    z-index: -1;
+    animation: spin 6s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 .hero-photo img {
     border-radius: 50%;
     border: 6px solid #fff;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-lg);
     object-fit: cover;
+    position: relative;
+    z-index: 1;
 }
 
 /* =========================================================
@@ -228,10 +285,21 @@ a {
 
 .info-item {
     background: #fff;
-    padding: 20px;
+    padding: 24px 20px;
     border-radius: var(--radius);
     border: 1px solid var(--border);
     text-align: center;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.info-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.info-icon {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
 }
 
 .info-item h3 {
@@ -428,6 +496,330 @@ a {
 
     .btn {
         width: 100%;
-        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* =========================================================
+   NAME HIGHLIGHT
+   ========================================================= */
+.name-highlight {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* =========================================================
+   ABOUT CTA
+   ========================================================= */
+.about-cta {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+/* =========================================================
+   FOOTER ENHANCED
+   ========================================================= */
+.footer-logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.footer-logo span {
+    color: var(--primary);
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.footer-links a {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    transition: color var(--transition);
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+/* =========================================================
+   MODAL SYSTEM
+   ========================================================= */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeOverlay 0.2s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+@keyframes fadeOverlay {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.modal-window {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s cubic-bezier(.34,1.56,.64,1);
+    position: relative;
+}
+
+.modal-wide {
+    max-width: 900px;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 28px 0;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+}
+
+.modal-header h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.modal-close {
+    background: var(--bg-alt);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+    flex-shrink: 0;
+}
+
+.modal-close:hover {
+    background: #fee2e2;
+    color: #dc2626;
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 24px 28px 28px;
+}
+
+.modal-subtitle {
+    color: var(--text-light);
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+}
+
+/* =========================================================
+   PROYEK DALAM MODAL
+   ========================================================= */
+.project-icon {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+}
+
+.project-card {
+    background: var(--bg-alt);
+    padding: 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+    border-color: var(--primary);
+}
+
+.project-card h3 {
+    color: var(--text);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.project-card p {
+    color: var(--text-light);
+    font-size: 0.92rem;
+    flex: 1;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tag {
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* =========================================================
+   KEAHLIAN DALAM MODAL
+   ========================================================= */
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.skill-item {
+    background: var(--bg-alt);
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.skill-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.skill-icon {
+    font-size: 1.2rem;
+}
+
+.skill-name {
+    font-weight: 600;
+    font-size: 1rem;
+    flex: 1;
+}
+
+.skill-pct {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.95rem;
+}
+
+.bar {
+    width: 100%;
+    height: 10px;
+    background: var(--border);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 5px;
+    width: 0%;
+    transition: width 0.8s cubic-bezier(.4,0,.2,1);
+}
+
+/* =========================================================
+   KONTAK DALAM MODAL
+   ========================================================= */
+.contact-info {
+    margin-top: 24px;
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.contact-info p {
+    margin-bottom: 8px;
+}
+
+.contact-link {
+    display: inline-block;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.contact-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* =========================================================
+   TOAST NOTIFIKASI
+   ========================================================= */
+.toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1f2937;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+    white-space: nowrap;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* =========================================================
+   RESPONSIF MODAL
+   ========================================================= */
+@media (max-width: 600px) {
+    .modal-header {
+        padding: 18px 18px 14px;
+    }
+    .modal-body {
+        padding: 18px 18px 24px;
+    }
+    .modal-wide {
+        max-width: 100%;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr;
     }
 }

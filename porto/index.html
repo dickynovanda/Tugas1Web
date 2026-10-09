@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portofolio Personal dan Resume Digital">
-    <meta name="author" content="Nama Anda">
+    <meta name="description" content="Portofolio Personal dan Resume Digital Dicky Ihsan Novanda">
+    <meta name="author" content="Dicky Ihsan Novanda">
     <title>Portofolio | Dicky Ihsan Novanda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
     <!-- ============ HEADER & NAVIGASI ============ -->
@@ -18,9 +23,9 @@
                 <ul class="nav-list">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">Tentang</a></li>
-                    <li><a href="#skills">Keahlian</a></li>
-                    <li><a href="#projects">Proyek</a></li>
-                    <li><a href="#contact">Kontak</a></li>
+                    <li><a href="#" id="nav-skills" onclick="openModal('modal-skills'); return false;">Keahlian</a></li>
+                    <li><a href="#" id="nav-projects" onclick="openModal('modal-projects'); return false;">Proyek</a></li>
+                    <li><a href="#" id="nav-contact" onclick="openModal('modal-contact'); return false;">Kontak</a></li>
                 </ul>
             </nav>
         </div>
@@ -31,20 +36,29 @@
         <section id="home" class="hero">
             <div class="container hero-wrapper">
                 <div class="hero-text">
-                    <p class="greeting">Halo, saya</p>
-                    <h1>Dicky Ihsan Novanda</h1>
+                    <p class="greeting">✦ Halo, saya</p>
+                    <h1>Dicky Ihsan <span class="name-highlight">Novanda</span></h1>
                     <p class="role">Web Developer &amp; Mahasiswa Teknik Informatika</p>
                     <p class="desc">
                         Saya memiliki minat besar dalam pengembangan web modern,
                         desain antarmuka, dan pemrograman front-end.
                     </p>
                     <div class="hero-buttons">
-                        <a href="#contact" class="btn btn-primary">Hubungi Saya</a>
-                        <a href="#projects" class="btn btn-outline">Lihat Proyek</a>
+                        <button id="btn-contact" class="btn btn-primary" onclick="openModal('modal-contact')">
+                            💬 Hubungi Saya
+                        </button>
+                        <button id="btn-projects" class="btn btn-outline" onclick="openModal('modal-projects')">
+                            🚀 Lihat Proyek
+                        </button>
+                        <button id="btn-skills" class="btn btn-ghost" onclick="openModal('modal-skills')">
+                            ⚡ Keahlian Saya
+                        </button>
                     </div>
                 </div>
                 <figure class="hero-photo">
-                    <img src="img/Dicky2.jpeg" alt="Foto profil Nama Anda" width="260" height="260">
+                    <div class="photo-ring">
+                        <img src="img/Dicky2.jpeg" alt="Foto profil Dicky Ihsan Novanda" width="260" height="260">
+                    </div>
                 </figure>
             </div>
         </section>
@@ -67,84 +81,263 @@
 
                 <div class="info-grid">
                     <div class="info-item">
+                        <div class="info-icon">🎓</div>
                         <h3>Pendidikan</h3>
                         <p>S1 Teknik Informatika</p>
                     </div>
                     <div class="info-item">
+                        <div class="info-icon">📍</div>
                         <h3>Lokasi</h3>
                         <p>Indonesia</p>
                     </div>
                     <div class="info-item">
+                        <div class="info-icon">📧</div>
                         <h3>Email</h3>
                         <p>dickynovanda26@gmail.com</p>
                     </div>
                     <div class="info-item">
+                        <div class="info-icon">✅</div>
                         <h3>Status</h3>
                         <p>Aktif Kuliah</p>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- ============ KEAHLIAN ============ -->
-        <section id="skills" class="section section-alt">
-            <div class="container">
-                <h2 class="section-title">Keahlian</h2>
-                <div class="skills-grid">
-                    <article class="skill-card">
-                        <h3>HTML5</h3>
-                        <div class="bar"><span style="width: 90%"></span></div>
-                        <p>90%</p>
-                    </article>
-                    <article class="skill-card">
-                        <h3>CSS3</h3>
-                        <div class="bar"><span style="width: 85%"></span></div>
-                        <p>85%</p>
-                    </article>
-                    <article class="skill-card">
-                        <h3>JavaScript</h3>
-                        <div class="bar"><span style="width: 75%"></span></div>
-                        <p>75%</p>
-                    </article>
-                    <article class="skill-card">
-                        <h3>PHP &amp; MySQL</h3>
-                        <div class="bar"><span style="width: 70%"></span></div>
-                        <p>70%</p>
-                    </article>
+                <!-- CTA Buttons di About -->
+                <div class="about-cta">
+                    <button class="btn btn-primary" onclick="openModal('modal-projects')">🚀 Lihat Proyek Saya</button>
+                    <button class="btn btn-outline" onclick="openModal('modal-skills')">⚡ Lihat Keahlian</button>
                 </div>
             </div>
         </section>
-
-        <!-- ============ PROYEK ============ -->
-        <section id="projects" class="section">
-            <div class="container">
-                <h2 class="section-title">Proyek</h2>
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <h3>Website Portofolio</h3>
-                        <p>Halaman portofolio pribadi yang dibangun dengan HTML dan CSS murni.</p>
-                        <p class="tags">HTML • CSS</p>
-                    </article>
-                    <article class="project-card">
-                        <h3>Aplikasi To-Do List</h3>
-                        <p>Aplikasi pencatat tugas sederhana berbasis JavaScript.</p>
-                        <p class="tags">HTML • CSS • JS</p>
-                    </article>
-                    <article class="project-card">
-                        <h3>Sistem Informasi Sekolah</h3>
-                        <p>Proyek latihan CRUD menggunakan PHP dan MySQL.</p>
-                        <p class="tags">PHP • MySQL</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+    </main>
 
     <!-- ============ FOOTER ============ -->
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2026 Nama Anda. Dibuat dengan HTML &amp; CSS murni.</p>
+            <p class="footer-logo">Dicky<span>Ihsan</span></p>
+            <p>&copy; 2026 Dicky Ihsan Novanda. Dibuat dengan HTML &amp; CSS murni.</p>
+            <div class="footer-links">
+                <a href="#" onclick="openModal('modal-projects'); return false;">Proyek</a>
+                <a href="#" onclick="openModal('modal-skills'); return false;">Keahlian</a>
+                <a href="#" onclick="openModal('modal-contact'); return false;">Kontak</a>
+            </div>
         </div>
     </footer>
 
+    <!-- ======================================================
+         MODAL: PROYEK
+         ====================================================== -->
+    <div id="modal-projects" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-projects-title" onclick="handleOverlayClick(event, 'modal-projects')">
+        <div class="modal-window modal-wide">
+            <div class="modal-header">
+                <h2 id="modal-projects-title">🚀 Proyek Saya</h2>
+                <button class="modal-close" onclick="closeModal('modal-projects')" aria-label="Tutup modal">&#x2715;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-subtitle">Beberapa proyek yang telah saya kerjakan</p>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-icon">🌐</div>
+                        <h3>Website Portofolio</h3>
+                        <p>Halaman portofolio pribadi yang dibangun dengan HTML dan CSS murni, lengkap dengan desain responsif dan animasi modern.</p>
+                        <div class="tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-sm">Lihat Detail →</a>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-icon">✅</div>
+                        <h3>Aplikasi To-Do List</h3>
+                        <p>Aplikasi pencatat tugas sederhana berbasis JavaScript dengan fitur tambah, hapus, dan tandai selesai.</p>
+                        <div class="tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-sm">Lihat Detail →</a>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-icon">🏫</div>
+                        <h3>Sistem Informasi Sekolah</h3>
+                        <p>Proyek latihan CRUD lengkap menggunakan PHP dan MySQL untuk manajemen data siswa dan nilai.</p>
+                        <div class="tags">
+                            <span class="tag">PHP</span>
+                            <span class="tag">MySQL</span>
+                        </div>
+                        <a href="#" class="btn btn-primary btn-sm">Lihat Detail →</a>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================
+         MODAL: KEAHLIAN
+         ====================================================== -->
+    <div id="modal-skills" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-skills-title" onclick="handleOverlayClick(event, 'modal-skills')">
+        <div class="modal-window">
+            <div class="modal-header">
+                <h2 id="modal-skills-title">⚡ Keahlian Saya</h2>
+                <button class="modal-close" onclick="closeModal('modal-skills')" aria-label="Tutup modal">&#x2715;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-subtitle">Teknologi dan bahasa pemrograman yang saya kuasai</p>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-icon">🟠</span>
+                            <span class="skill-name">HTML5</span>
+                            <span class="skill-pct">90%</span>
+                        </div>
+                        <div class="bar"><span class="bar-fill" data-width="90"></span></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-icon">🔵</span>
+                            <span class="skill-name">CSS3</span>
+                            <span class="skill-pct">85%</span>
+                        </div>
+                        <div class="bar"><span class="bar-fill" data-width="85"></span></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-icon">🟡</span>
+                            <span class="skill-name">JavaScript</span>
+                            <span class="skill-pct">75%</span>
+                        </div>
+                        <div class="bar"><span class="bar-fill" data-width="75"></span></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-icon">🟣</span>
+                            <span class="skill-name">PHP &amp; MySQL</span>
+                            <span class="skill-pct">70%</span>
+                        </div>
+                        <div class="bar"><span class="bar-fill" data-width="70"></span></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-icon">🟢</span>
+                            <span class="skill-name">Git &amp; GitHub</span>
+                            <span class="skill-pct">65%</span>
+                        </div>
+                        <div class="bar"><span class="bar-fill" data-width="65"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================
+         MODAL: KONTAK
+         ====================================================== -->
+    <div id="modal-contact" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-contact-title" onclick="handleOverlayClick(event, 'modal-contact')">
+        <div class="modal-window">
+            <div class="modal-header">
+                <h2 id="modal-contact-title">💬 Hubungi Saya</h2>
+                <button class="modal-close" onclick="closeModal('modal-contact')" aria-label="Tutup modal">&#x2715;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-subtitle">Punya pertanyaan atau ingin berkolaborasi? Kirim pesan!</p>
+                <form class="contact-form" id="contact-form" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pesan">Pesan</label>
+                        <textarea id="pesan" name="pesan" rows="5" placeholder="Tuliskan pesan Anda di sini..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="btn-submit">
+                        Kirim Pesan 📨
+                    </button>
+                </form>
+                <div class="contact-info">
+                    <p>Atau hubungi langsung:</p>
+                    <a href="mailto:dickynovanda26@gmail.com" class="contact-link">📧 dickynovanda26@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================
+         TOAST NOTIFIKASI
+         ====================================================== -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script>
+        // ── Modal Open/Close ──────────────────────────────────
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Animate skill bars saat modal skills dibuka
+            if (id === 'modal-skills') {
+                setTimeout(function() {
+                    document.querySelectorAll('.bar-fill').forEach(function(bar) {
+                        bar.style.width = bar.dataset.width + '%';
+                    });
+                }, 100);
+            }
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+
+            // Reset skill bar kalau ditutup
+            if (id === 'modal-skills') {
+                document.querySelectorAll('.bar-fill').forEach(function(bar) {
+                    bar.style.width = '0%';
+                });
+            }
+        }
+
+        function handleOverlayClick(e, id) {
+            if (e.target === document.getElementById(id)) {
+                closeModal(id);
+            }
+        }
+
+        // Tutup modal dengan ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                ['modal-projects', 'modal-skills', 'modal-contact'].forEach(closeModal);
+            }
+        });
+
+        // ── Form Submit ───────────────────────────────────────
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            var btn = document.getElementById('btn-submit');
+            btn.textContent = 'Mengirim...';
+            btn.disabled = true;
+
+            setTimeout(function() {
+                closeModal('modal-contact');
+                document.getElementById('contact-form').reset();
+                btn.textContent = 'Kirim Pesan 📨';
+                btn.disabled = false;
+                showToast('✅ Pesan berhasil dikirim! Terima kasih.');
+            }, 1500);
+        }
+
+        // ── Toast ─────────────────────────────────────────────
+        function showToast(msg) {
+            var toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(function() { toast.classList.remove('show'); }, 3500);
+        }
+    </script>
+
 </body>
+
 </html>
